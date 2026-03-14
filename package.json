@@ -1,0 +1,11 @@
+{
+  "name": "einkaufsliste",
+  "version": "1.0.0",
+  "description": "Einkaufsliste mit Kategorien und Prioritäten",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

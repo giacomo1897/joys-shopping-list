@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joy's Shopping List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Joy's Shopping List</h1>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-ghost" id="btnManageCategories">Kategorien verwalten</button>
+        <button class="btn btn-sm btn-danger" id="btnClearBought">Gekaufte entfernen</button>
+      </div>
+    </header>
+
+    <!-- Quick Add -->
+    <form class="quick-add" id="quickAddForm">
+      <input type="text" id="quickName" placeholder="Artikel hinzufügen..." required>
+      <input type="text" id="quickQty" placeholder="Menge" class="qty-input">
+      <input type="number" id="quickPrice" placeholder="Preis €" class="price-input" step="0.01" min="0">
+      <select id="quickCategory">
+        <option value="">Kategorie</option>
+      </select>
+      <select id="quickPriority">
+        <option value="low">Niedrig</option>
+        <option value="normal" selected>Normal</option>
+        <option value="high">Hoch</option>
+        <option value="urgent">Dringend</option>
+      </select>
+      <button type="submit" class="btn btn-primary">+</button>
+    </form>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="open">Offen</button>
+      <button class="filter-btn" data-filter="bought">Gekauft</button>
+      <div class="filter-cats" id="filterCats"></div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText"></div>
+
+    <!-- Expense Summary -->
+    <div class="expense-summary" id="expenseSummary"></div>
+
+    <!-- List -->
+    <div class="list" id="itemList"></div>
+  </div>
+
+  <!-- Category Modal -->
+  <div class="modal-overlay" id="catModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Kategorien verwalten</h2>
+        <button class="btn-close" id="btnCloseCatModal">&times;</button>
+      </div>
+      <form class="cat-add" id="catAddForm">
+        <input type="text" id="catName" placeholder="Neue Kategorie...">
+        <button type="submit" class="btn btn-primary">Hinzufügen</button>
+      </form>
+      <div class="cat-list" id="catList"></div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Artikel bearbeiten</h2>
+        <button class="btn-close" id="btnCloseEditModal">&times;</button>
+      </div>
+      <form id="editForm">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label>Artikel</label>
+          <input type="text" id="editName" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Menge</label>
+            <input type="text" id="editQty">
+          </div>
+          <div class="form-group">
+            <label>Preis (€)</label>
+            <input type="number" id="editPrice" step="0.01" min="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Priorität</label>
+            <select id="editPriority">
+              <option value="low">Niedrig</option>
+              <option value="normal">Normal</option>
+              <option value="high">Hoch</option>
+              <option value="urgent">Dringend</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Kategorie</label>
+            <select id="editCategory"></select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="btnCancelEdit">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
